@@ -15,6 +15,7 @@ const defaultOptions = {
   imgHeight: '650px',
   border: true,
   domain: 'https://awesomeblog.com',
+  favicon: 'example.com/favicon.png',
   outputDir: 'content/images/',
   cloud_name: undefined,
   api_key: undefined,
