@@ -30,8 +30,8 @@ module.exports = function(api, passedOptions) {
 
   api.loadSource(({addSchemaTypes}) => {
     addSchemaTypes(`
-		type Post implements Node @infer {
-			cover_image_back:String
+		type ${options.typeName} implements Node @infer {
+			${options.coverField}:String
 		}
 		`);
   });
@@ -56,7 +56,7 @@ module.exports = function(api, passedOptions) {
               } else {
                 // collection.addRefNode(options.typeName,options.coverField,result.secure_url);
                 // collection.updateNode(node,{[options.coverField]: result.secure_url });
-                collection.updateNode({...node,id:node.id,title:node.title,cover_image_back: result.secure_url });
+                collection.updateNode({...node,id:node.id,title:node.title,[options.coverField]: result.secure_url });
               }
             });
           })
