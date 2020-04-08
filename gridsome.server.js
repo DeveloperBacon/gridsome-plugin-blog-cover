@@ -28,30 +28,43 @@ module.exports = function(api, passedOptions) {
 
   cloudinaryService.connect(options);
 
+  api.loadSource(({addSchemaTypes}) => {
+    addSchemaTypes(`
+		type Post implements Node @infer {
+			cover_image_back:String
+		}
+		`);
+  });
+
   api.loadSource(async actions => {
     const collection = actions.getCollection(options.typeName);
-
+    
+    console.info('Generating cover images');
+    
     collection.data().forEach(function(node) {
       if (node.internal.typeName === options.typeName && !node[options.coverField]) {
-        console.info('Generating cover images');
         const splitPath = node.path.split('/'); // remove slash(/) from path string
         const imgName = splitPath[splitPath.length - 2]; // second to last item in array is the title slug, last is empty string
         fs.ensureDirSync(options.outputDir); // create output dir if it does not exist
         const output = `${options.outputDir}/${imgName}.png`;
-
+        
         createImage({ output, html: generateHtml(node.title, options) })
           .then(function() {
             cloudinaryService.upload(output, { use_filename: true, unique_filename: false, folder: options.upload_folder, overwrite: false }, function(error, result) {
               if (error) {
                 console.error(error);
               } else {
-                collection.updateNode({ id: node.id, title: `${node.title}_updated`, [options.coverField]: result.secure_url });
+                // collection.addRefNode(options.typeName,options.coverField,result.secure_url);
+                // collection.updateNode(node,{[options.coverField]: result.secure_url });
+                collection.updateNode({...node,id:node.id,title:node.title,cover_image_back: result.secure_url });
               }
             });
           })
           .catch(err => console.log(err));
       }
     });
+
+    console.info("Generating cover images: completed");
 
     //  clean out images generated
     fs.emptyDir(options.outputDir)
