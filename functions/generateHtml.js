@@ -1,4 +1,4 @@
-module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border, domain }) {
+module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border, domain, favicon }) {
   const bgColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
 
   const template = `
@@ -21,7 +21,7 @@ module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border
           }
 
           div.container{
-            border: ${border ? '3px solid #ffffff' : 'none'};
+            border: ${border ? '3px solid #ff4b39' : 'none'};
             text-align: left;
             padding: 30px;
             width: 100%;
@@ -34,18 +34,31 @@ module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border
             font-size: 3.7rem;
             text-transform: capitalize;
           }
+          img.favicon {
+            text-align: left;
+            height: 50px;
+            width: 50px;
+          }
+          div.footer {
+            display: flex;
+            justify-content: space-between;
+          }
           p.domain{
-            justify-contnet: flex-end;
             text-align: right;
-            font-style: italic
+            font-style: italic;
+            margin-top: 30px;
           }
         </style>
       </head>
       <body>
           <div class="container">
             <h1 class="title">${title}</h1>
-
-            <p class="domain">${domain}</p>
+            
+            <div class="footer">
+              ${favicon ? '<img class="favicon" height="100" width="100" src="'+favicon+'">' : ''}
+              
+              <p class="domain">${domain}</p>
+            </div>
           </div>
       </body>
     </html>
