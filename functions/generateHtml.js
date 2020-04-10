@@ -1,4 +1,4 @@
-module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border, domain, favicon }) {
+module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border, borderColor, domain, favicon }) {
   const bgColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
 
   const template = `
@@ -21,7 +21,7 @@ module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border
           }
 
           div.container{
-            border: ${border ? '3px solid #ff4b39' : 'none'};
+            border: ${border ? '3px solid ' + borderColor ? borderColor : '#ffffff' : 'none'};
             text-align: left;
             padding: 30px;
             width: 100%;
