@@ -21,7 +21,7 @@ module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border
           }
 
           div.container{
-            border: ${border ? '3px solid ' + borderColor ? borderColor : '#ffffff' : 'none'};
+            border: ${border ? '3px solid ' + (borderColor ? borderColor : '#ffffff') : 'none'};
             text-align: left;
             padding: 30px;
             width: 100%;
