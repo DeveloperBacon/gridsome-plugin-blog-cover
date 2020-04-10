@@ -11,6 +11,7 @@ const defaultOptions = {
   typeName: 'Post',
   coverField: 'cover_image',
   backgroundColors: ['#30475e', '#381460', '#ba6b57', '#21243d', '#434e52'],
+  borderColor: '#ffffff',
   imgWidth: '700px',
   imgHeight: '650px',
   border: true,
@@ -54,8 +55,6 @@ module.exports = function(api, passedOptions) {
               if (error) {
                 console.error(error);
               } else {
-                // collection.addRefNode(options.typeName,options.coverField,result.secure_url);
-                // collection.updateNode(node,{[options.coverField]: result.secure_url });
                 collection.updateNode({...node,id:node.id,title:node.title,[options.coverField]: result.secure_url });
               }
             });
