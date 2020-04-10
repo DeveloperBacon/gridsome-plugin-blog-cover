@@ -65,6 +65,11 @@ Your cloudinary API key
 Your cloudinary API secret
   * expected value: `String`
 
+#### `favicon`
+The url of your blog site favicon. The images dimensions should be at least `50x50`px
+  * expected value: `String`
+  * default: `https://awesomeblog.com/favicon.png`
+
 #### `upload_folder`
 The folder to use for all uploads on Cloudinary
   * expected value: `String`
@@ -74,6 +79,11 @@ The folder to use for all uploads on Cloudinary
 Have a thin white border around the content
  * expected value: `Boolean`
  * default: `true`
+
+#### `borderColor`
+Have a thin white border around the content
+ * expected value: `String`
+ * default: `#ffffff`
 
 #### `backgroundColors`
 An array of Hex color codes to use for backgrounds
