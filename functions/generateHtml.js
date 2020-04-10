@@ -12,8 +12,8 @@ module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border
           }
 
           body{
-            min-width: ${imgWidth};
-            min-height: ${imgHeight};
+            width: ${imgWidth};
+            height: ${imgHeight};
             padding: 40px;
             background: ${bgColor};
             color: #ffffff;
