@@ -32,6 +32,7 @@ module.exports = function(title, { backgroundColors, imgHeight, imgWidth, border
           }
           h1.title{
             font-size: 3.7rem;
+            line-height: 4rem;
             text-transform: capitalize;
           }
           img.favicon {
